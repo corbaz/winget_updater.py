@@ -1,5 +1,6 @@
 # PyInstaller
 build/
+dist/
 *.spec
 
 # Archivos temporales de iconos
