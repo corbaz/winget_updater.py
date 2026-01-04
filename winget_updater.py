@@ -27,10 +27,18 @@ def run_as_admin():
 class WingetUpdater:
     def __init__(self, root):
         self.root = root
-        self.root.title("Actualizador de Aplicaciones - Winget [ADMIN]")
+        self.root.title("Win-Upgrade - Actualizador de Aplicaciones [ADMIN]")
         self.root.geometry("1400x750")
         self.root.minsize(1000, 600)
         
+        # Configurar icono personalizado
+        try:
+            icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'win-upgrade.ico')
+            if os.path.exists(icon_path):
+                self.root.iconbitmap(icon_path)
+        except Exception as e:
+            print(f"No se pudo cargar el icono: {e}")
+
         # Colores profesionales
         self.colors = {
             'bg_dark': '#1e1e1e',

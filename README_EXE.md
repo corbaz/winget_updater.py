@@ -1,22 +1,22 @@
-# 🚀 Guía para Compilar WingetUpdater.exe
+# 🚀 Guía para Compilar win-upgrade.exe
 
 ## ✅ Ejecutable Ya Creado
 
 Tu aplicación ya está compilada en:
 ```
-📁 C:\Bat\dist\WingetUpdater.exe
+📁 C:\Bat\dist\win-upgrade.exe
 ```
 Tamaño: ~12 MB
 
 ## 🔧 Cómo Usar el Ejecutable
 
 1. **Ejecutar como Administrador** (IMPORTANTE):
-   - Clic derecho en `WingetUpdater.exe`
+   - Clic derecho en `win-upgrade.exe`
    - Seleccionar "Ejecutar como administrador"
    - O hacer doble clic (el programa pedirá permisos automáticamente)
 
 2. **Distribuir**:
-   - Puedes copiar `WingetUpdater.exe` a cualquier PC con Windows
+   - Puedes copiar `win-upgrade.exe` a cualquier PC con Windows
    - No necesita Python instalado
    - No necesita instalación
 
@@ -31,15 +31,18 @@ build_exe.bat
 ### Método 2: Línea de Comandos
 ```bash
 cd C:\Bat
-pyinstaller --onefile --windowed --uac-admin --name="WingetUpdater" --clean winget_updater.py
+pyinstaller --onefile --windowed --uac-admin --icon=win-upgrade.ico --name="win-upgrade" --clean --add-data="win-upgrade.ico;." winget_updater.py
 ```
 
 ### Método 3: Con Icono Personalizado
+El icono ya está incluido (`win-upgrade.ico`). Si quieres crear uno diferente:
 ```bash
-# 1. Consigue un archivo .ico (por ejemplo: icon.ico)
-# 2. Colócalo en C:\Bat\
-# 3. Ejecuta:
-pyinstaller --onefile --windowed --uac-admin --icon=icon.ico --name="WingetUpdater" --clean winget_updater.py
+# 1. Edita create_icon.py para personalizar el diseño
+# 2. Ejecuta:
+python create_icon.py
+
+# 3. Compila:
+pyinstaller --onefile --windowed --uac-admin --icon=win-upgrade.ico --name="win-upgrade" --clean --add-data="win-upgrade.ico;." winget_updater.py
 ```
 
 ## 📦 Opciones de PyInstaller Usadas
@@ -49,20 +52,23 @@ pyinstaller --onefile --windowed --uac-admin --icon=icon.ico --name="WingetUpdat
 | `--onefile` | Crea un solo archivo .exe (portable) |
 | `--windowed` | Sin ventana de consola (GUI pura) |
 | `--uac-admin` | Solicita permisos de administrador automáticamente |
-| `--name="WingetUpdater"` | Nombre del ejecutable |
+| `--name="win-upgrade"` | Nombre del ejecutable |
+| `--icon=win-upgrade.ico` | Añade el icono personalizado |
 | `--clean` | Limpia cache antes de compilar |
-| `--icon=archivo.ico` | Añade un icono personalizado |
+| `--add-data="win-upgrade.ico;."` | Incluye el icono en el ejecutable |
 
 ## 📂 Estructura de Archivos Generados
 
 ```
 C:\Bat\
 ├── winget_updater.py          # Código fuente
+├── win-upgrade.ico            # Icono personalizado
+├── create_icon.py             # Script para crear el icono
 ├── build_exe.bat              # Script de compilación
-├── WingetUpdater.spec         # Configuración de PyInstaller
+├── win-upgrade.spec           # Configuración de PyInstaller
 ├── build\                     # Archivos temporales (se puede borrar)
 └── dist\
-    └── WingetUpdater.exe      # ✅ EJECUTABLE FINAL
+    └── win-upgrade.exe        # ✅ EJECUTABLE FINAL
 ```
 
 ## 🎯 Ventajas del .exe
@@ -90,7 +96,7 @@ C:\Bat\
 
 Si quieres ver mensajes de error:
 ```bash
-pyinstaller --onefile --console --uac-admin --name="WingetUpdater_Debug" --clean winget_updater.py
+pyinstaller --onefile --console --uac-admin --icon=win-upgrade.ico --name="win-upgrade-debug" --clean winget_updater.py
 ```
 
 ## 📝 Agregar Información de Versión
@@ -114,12 +120,12 @@ VSVersionInfo(
       StringTable(
         u'040904B0',
         [StringStruct(u'CompanyName', u'Tu Nombre'),
-        StringStruct(u'FileDescription', u'Actualizador Winget Pro'),
+        StringStruct(u'FileDescription', u'Win-Upgrade - Actualizador Winget'),
         StringStruct(u'FileVersion', u'1.0.0.0'),
-        StringStruct(u'InternalName', u'WingetUpdater'),
+        StringStruct(u'InternalName', u'win-upgrade'),
         StringStruct(u'LegalCopyright', u'© 2026'),
-        StringStruct(u'OriginalFilename', u'WingetUpdater.exe'),
-        StringStruct(u'ProductName', u'Winget Updater'),
+        StringStruct(u'OriginalFilename', u'win-upgrade.exe'),
+        StringStruct(u'ProductName', u'Win-Upgrade'),
         StringStruct(u'ProductVersion', u'1.0.0.0')])
     ]),
     VarFileInfo([VarStruct(u'Translation', [1033, 1200])])
@@ -129,7 +135,7 @@ VSVersionInfo(
 
 Luego compila con:
 ```bash
-pyinstaller --onefile --windowed --uac-admin --version-file=version.txt --name="WingetUpdater" winget_updater.py
+pyinstaller --onefile --windowed --uac-admin --version-file=version.txt --icon=win-upgrade.ico --name="win-upgrade" winget_updater.py
 ```
 
 ## 🆘 Solución de Problemas
@@ -147,7 +153,7 @@ pyinstaller --onefile --windowed --uac-admin --version-file=version.txt --name="
 
 ## 📧 Compartir el Ejecutable
 
-Puedes subir `WingetUpdater.exe` a:
+Puedes subir `win-upgrade.exe` a:
 - GitHub Releases
 - Google Drive
 - OneDrive

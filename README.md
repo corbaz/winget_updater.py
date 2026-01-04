@@ -1,4 +1,4 @@
-# ⚙️ Winget Updater Pro
+# ⚙️ Win-Upgrade
 
 <div align="center">
 
@@ -16,7 +16,7 @@
 
 ## 📋 Descripción
 
-**Winget Updater Pro** es una interfaz gráfica moderna y profesional para gestionar actualizaciones de aplicaciones en Windows usando `winget`. Olvídate de la línea de comandos y actualiza todas tus aplicaciones con un par de clics.
+**Win-Upgrade** es una interfaz gráfica moderna y profesional para gestionar actualizaciones de aplicaciones en Windows usando `winget`. Olvídate de la línea de comandos y actualiza todas tus aplicaciones con un par de clics.
 
 ### ✨ Características
 
@@ -55,11 +55,12 @@
 
 ### Opción 1: Ejecutable (.exe) - Recomendado
 
-**📦 [Descargar WingetUpdater.exe](https://github.com/corbaz/winget_updater.py/releases)**
+**📦 [Descargar win-upgrade.exe](https://github.com/corbaz/winget_updater.py/releases)**
 
 - ✅ No requiere Python instalado
 - ✅ Portable (un solo archivo)
 - ✅ Listo para usar
+- ✅ Icono personalizado de Windows
 - 📏 Tamaño: ~12 MB
 
 ### Opción 2: Código Fuente (.py)
@@ -82,7 +83,7 @@ python winget_updater.py
 ### Ejecutar el Programa
 
 1. **Desde el .exe**:
-   - Clic derecho en `WingetUpdater.exe`
+   - Clic derecho en `win-upgrade.exe`
    - "Ejecutar como administrador"
    - ¡Listo!
 
@@ -128,10 +129,10 @@ build_exe.bat
 
 **Opción 2: Comando Manual**
 ```bash
-pyinstaller --onefile --windowed --uac-admin --name="WingetUpdater" --clean winget_updater.py
+pyinstaller --onefile --windowed --uac-admin --icon=win-upgrade.ico --name="win-upgrade" --clean --add-data="win-upgrade.ico;." winget_updater.py
 ```
 
-El ejecutable se generará en: `dist/WingetUpdater.exe`
+El ejecutable se generará en: `dist/win-upgrade.exe`
 
 ### Opciones de Compilación
 
@@ -153,13 +154,15 @@ El ejecutable se generará en: `dist/WingetUpdater.exe`
 winget_updater.py/
 │
 ├── winget_updater.py        # Código fuente principal
+├── win-upgrade.ico          # Icono personalizado
+├── create_icon.py           # Script para crear el icono
 ├── build_exe.bat            # Script de compilación
 ├── README.md                # Este archivo
 ├── README_EXE.md            # Guía detallada de compilación
 ├── .gitignore               # Archivos excluidos de Git
 │
 ├── dist/                    # Ejecutable compilado
-│   └── WingetUpdater.exe
+│   └── win-upgrade.exe
 │
 └── build/                   # Archivos temporales (ignorados)
 ```

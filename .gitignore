@@ -3,6 +3,10 @@ build/
 dist/
 *.spec
 
+# Archivos temporales de iconos
+extract_icon.py
+windows_icon.png
+
 # Python
 __pycache__/
 *.py[cod]
