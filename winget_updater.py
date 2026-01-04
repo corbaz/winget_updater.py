@@ -254,13 +254,14 @@ class WingetUpdater:
     def _scan_updates_thread(self):
         """Thread para escanear actualizaciones"""
         try:
-            # Ejecutar winget upgrade
+            # Ejecutar winget upgrade (ventana oculta)
             result = subprocess.run(
                 ["winget", "upgrade", "--include-unknown"],
                 capture_output=True,
                 text=True,
                 encoding='utf-8',
-                errors='replace'
+                errors='replace',
+                creationflags=subprocess.CREATE_NO_WINDOW
             )
             
             # Mostrar salida completa en log para debugging
@@ -466,7 +467,8 @@ class WingetUpdater:
                     text=True,
                     encoding='utf-8',
                     errors='replace',
-                    timeout=300
+                    timeout=300,
+                    creationflags=subprocess.CREATE_NO_WINDOW
                 )
                 
                 if result.returncode == 0:
@@ -506,7 +508,8 @@ class WingetUpdater:
                         text=True,
                         encoding='utf-8',
                         errors='replace',
-                        timeout=300
+                        timeout=300,
+                        creationflags=subprocess.CREATE_NO_WINDOW
                     )
 
                     if result.returncode == 0:
@@ -554,7 +557,8 @@ class WingetUpdater:
                             text=True,
                             encoding='utf-8',
                             errors='replace',
-                            timeout=300
+                            timeout=300,
+                            creationflags=subprocess.CREATE_NO_WINDOW
                         )
 
                         if uninstall_result.returncode == 0:
@@ -570,7 +574,8 @@ class WingetUpdater:
                             text=True,
                             encoding='utf-8',
                             errors='replace',
-                            timeout=300
+                            timeout=300,
+                            creationflags=subprocess.CREATE_NO_WINDOW
                         )
 
                         if install_result.returncode == 0:
